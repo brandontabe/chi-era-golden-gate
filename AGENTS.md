@@ -28,3 +28,5 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+The fashion storefront stays on a single index route with shared styling in `src/styles.css`, because verified product details currently come from social posts rather than a separate commerce catalog.
