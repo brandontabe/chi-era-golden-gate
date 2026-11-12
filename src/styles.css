@@ -158,3 +158,79 @@
 @utility animate-rise { animation: rise .9s ease-out both; }
 @utility animate-logo-pulse { animation: logo-pulse 1.4s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; } }
+
+/* Architectural details stay visible around the compact, opaque reading surface. */
+.boutique-doorway {
+  position: absolute;
+  inset: 18px clamp(12px, 4vw, 64px) 20px;
+  border: 8px solid var(--door);
+  outline: 1px solid var(--primary);
+  box-shadow: inset 0 0 0 2px var(--primary), 0 12px 35px oklch(0 0 0 / 25%);
+  display: flex;
+  flex-direction: column;
+}
+.door-transom {
+  height: 65px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(16px, 3vw, 40px);
+  background: var(--door);
+  color: var(--primary);
+  border-bottom: 3px double var(--primary);
+  font-size: 9px;
+  letter-spacing: .24em;
+}
+.door-transom span:first-child { font-family: var(--font-display); font-size: 24px; letter-spacing: .08em; }
+.door-leaves { display: flex; flex: 1; min-height: 0; perspective: 1400px; }
+.door-leaves .door-panel {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  background: var(--door);
+  border: 2px solid var(--primary);
+  box-shadow: inset 0 0 0 6px var(--door), inset 0 0 0 7px var(--border);
+  backface-visibility: hidden;
+}
+.door-panel-left { transform-origin: left; }
+.door-panel-right { transform-origin: right; }
+.door-glass {
+  position: absolute;
+  inset: 18px 22px 27%;
+  border: 3px double var(--primary);
+  background: linear-gradient(125deg, oklch(1 0 0 / 14%), transparent 45%, oklch(1 0 0 / 6%) 46%, transparent 65%), color-mix(in oklch, var(--background) 82%, transparent);
+  box-shadow: inset 0 0 25px oklch(0 0 0 / 8%);
+}
+.door-lower-panel { position: absolute; inset: 78% 22px 20px; border: 3px double var(--primary); box-shadow: inset 0 3px 10px oklch(0 0 0 / 12%); }
+.door-handle {
+  position: absolute;
+  bottom: 8%;
+  width: 10px;
+  height: 64px;
+  border: 1px solid oklch(0.48 0.08 75);
+  border-radius: 5px;
+  background: linear-gradient(90deg, oklch(0.48 0.08 75), oklch(0.85 0.1 85), oklch(0.54 0.09 75));
+  box-shadow: 3px 5px 5px oklch(0 0 0 / 25%);
+}
+.door-handle::before, .door-handle::after { content: ""; position: absolute; left: -4px; width: 16px; height: 6px; border-radius: 2px; background: oklch(0.56 0.08 75); }
+.door-handle::before { top: 8px; }
+.door-handle::after { bottom: 8px; }
+.door-panel-left .door-handle { right: 9px; }
+.door-panel-right .door-handle { left: 9px; }
+.door-threshold { height: 10px; background: var(--primary); border-top: 3px solid var(--door); }
+.hero-copy {
+  width: min(100%, 470px);
+  padding: 32px 20px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  box-shadow: 0 15px 50px oklch(0 0 0 / 12%);
+}
+.hero-caption { background: var(--background); padding: 8px 12px; color: var(--foreground); }
+@media (min-width: 640px) { .hero-copy { padding: 36px 32px; } }
+@media (max-width: 639px) {
+  .door-glass { left: 10px; right: 10px; }
+  .door-lower-panel { left: 10px; right: 10px; }
+  .hero-copy { max-width: 300px; }
+  .hero-caption { font-size: 8px; letter-spacing: .12em; gap: 8px; }
+}
