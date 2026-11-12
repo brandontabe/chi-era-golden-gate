@@ -129,16 +129,16 @@ function HomePage() {
           </div>
         </div>
         <div className="relative z-10 flex min-h-[680px] flex-col items-center justify-center px-6 py-24 text-center sm:min-h-[760px] lg:min-h-[min(820px,calc(100svh-80px))]">
-          <p className="mb-6 animate-rise text-[10px] uppercase tracking-[0.38em] text-primary sm:text-xs">Where power meets elegance</p>
-          <h1 className="animate-rise font-display text-6xl font-normal leading-[0.92] text-foreground sm:text-8xl lg:text-9xl" style={{ animationDelay: "100ms" }}>
+          {doorOpened && <p className="mb-6 animate-rise text-[10px] uppercase tracking-[0.38em] text-primary sm:text-xs">Where power meets elegance</p>}
+          <h1 className={`animate-rise font-display font-normal leading-[0.92] text-foreground ${doorOpened ? "text-6xl sm:text-8xl lg:text-9xl" : "text-5xl sm:text-6xl"}`} style={{ animationDelay: "100ms" }}>
             Chi-Era<span className="block italic text-gold">Activewear</span>
           </h1>
-          <p className="mt-7 max-w-md animate-rise text-sm font-light leading-7 text-foreground/90 sm:text-base" style={{ animationDelay: "200ms" }}>Strength in every silhouette. Elegance in every move.</p>
+          {doorOpened && <p className="mt-7 max-w-md animate-rise text-sm font-light leading-7 text-foreground/90 sm:text-base" style={{ animationDelay: "200ms" }}>Strength in every silhouette. Elegance in every move.</p>}
           <Button onClick={enterBoutique} disabled={doorsOpening} variant="outline" className="mt-10 h-12 gap-4 border-primary/80 bg-background/85 px-7 text-xs uppercase tracking-[0.2em] text-foreground transition-all hover:bg-primary hover:text-primary-foreground">
             {doorsOpening ? "Welcome inside" : doorOpened ? "Explore the collection" : "Enter the boutique"}
             {doorOpened ? <ArrowDown className="size-4" /> : <ArrowRight className="size-4" />}
           </Button>
-          <div className="absolute bottom-7 flex items-center gap-3 text-[9px] uppercase tracking-[0.3em] text-foreground/70 sm:bottom-9"><span className="h-px w-8 bg-primary" />A considered kind of movement<span className="h-px w-8 bg-primary" /></div>
+          {doorOpened && <div className="absolute bottom-7 flex items-center gap-3 text-[9px] uppercase tracking-[0.3em] text-foreground/70 sm:bottom-9"><span className="h-px w-8 bg-primary" />A considered kind of movement<span className="h-px w-8 bg-primary" /></div>}
         </div>
       </section>
 
