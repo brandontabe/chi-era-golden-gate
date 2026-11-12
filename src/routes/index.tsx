@@ -118,31 +118,27 @@ function HomePage() {
       <section aria-label="Welcome to Chi-Era Activewear" className="relative isolate min-h-[680px] overflow-hidden sm:min-h-[760px] lg:min-h-[min(820px,calc(100svh-80px))]">
         <img src={boutiqueInterior} alt="A sunlit Chi-Era-inspired activewear boutique" width={1920} height={1280} fetchPriority="high" className="absolute inset-0 -z-20 size-full object-cover object-center" />
         <div className="absolute inset-0 -z-10 bg-background/45" />
-        <div className="boutique-doorway" aria-hidden="true">
-          <div className="door-transom"><span>CH / É</span><span>PRIVATE BOUTIQUE</span></div>
-          <div className="door-leaves">
-            <div className={`door-panel door-panel-left ${doorsOpening ? "animate-door-left" : doorOpened ? "invisible" : ""}`}>
-              <span className="door-glass" /><span className="door-lower-panel" /><span className="door-handle" />
-            </div>
-            <div className={`door-panel door-panel-right ${doorsOpening ? "animate-door-right" : doorOpened ? "invisible" : ""}`}>
-              <span className="door-glass" /><span className="door-lower-panel" /><span className="door-handle" />
-            </div>
+        <div className="absolute inset-0 z-0 flex" aria-hidden="true">
+          <div className={`door-panel relative h-full w-1/2 origin-left border-r border-primary/35 ${doorsOpening ? "animate-door-left" : doorOpened ? "hidden" : ""}`}>
+            <span className="absolute right-5 top-1/2 h-20 w-px -translate-y-1/2 bg-gradient-to-b from-transparent via-primary to-transparent sm:right-10" />
+            <span className="absolute right-2 top-1/2 size-2 -translate-y-1/2 rounded-full bg-primary sm:right-7" />
           </div>
-          <div className="door-threshold" />
+          <div className={`door-panel relative h-full w-1/2 origin-right border-l border-primary/35 ${doorsOpening ? "animate-door-right" : doorOpened ? "hidden" : ""}`}>
+            <span className="absolute left-5 top-1/2 h-20 w-px -translate-y-1/2 bg-gradient-to-b from-transparent via-primary to-transparent sm:left-10" />
+            <span className="absolute left-2 top-1/2 size-2 -translate-y-1/2 rounded-full bg-primary sm:left-7" />
+          </div>
         </div>
         <div className="relative z-10 flex min-h-[680px] flex-col items-center justify-center px-6 py-24 text-center sm:min-h-[760px] lg:min-h-[min(820px,calc(100svh-80px))]">
-          <div className="hero-copy">
-          <p className="mb-5 animate-rise text-[10px] uppercase tracking-[0.38em] text-primary sm:text-xs">Where power meets elegance</p>
-          <h1 className="animate-rise font-display text-5xl font-normal leading-[1.02] text-foreground sm:text-6xl lg:text-7xl" style={{ animationDelay: "100ms" }}>
-            Chi-Era<span className="block italic text-primary">Activewear</span>
+          <p className="mb-6 animate-rise text-[10px] uppercase tracking-[0.38em] text-primary sm:text-xs">Where power meets elegance</p>
+          <h1 className="animate-rise font-display text-6xl font-normal leading-[0.92] text-foreground sm:text-8xl lg:text-9xl" style={{ animationDelay: "100ms" }}>
+            Chi-Era<span className="block italic text-gold">Activewear</span>
           </h1>
-          <p className="mx-auto mt-5 max-w-xs animate-rise text-sm leading-6 text-foreground sm:text-base" style={{ animationDelay: "200ms" }}>Strength in every silhouette. Elegance in every move.</p>
-          <Button onClick={enterBoutique} disabled={doorsOpening} variant="outline" className="mt-7 h-12 gap-4 border-primary bg-primary px-5 text-[10px] uppercase tracking-[0.15em] text-primary-foreground transition-colors hover:bg-primary/90 hover:text-primary-foreground sm:px-7 sm:text-xs">
+          <p className="mt-7 max-w-md animate-rise text-sm font-light leading-7 text-foreground/90 sm:text-base" style={{ animationDelay: "200ms" }}>Strength in every silhouette. Elegance in every move.</p>
+          <Button onClick={enterBoutique} disabled={doorsOpening} variant="outline" className="mt-10 h-12 gap-4 border-primary/80 bg-background/85 px-7 text-xs uppercase tracking-[0.2em] text-foreground transition-all hover:bg-primary hover:text-primary-foreground">
             {doorsOpening ? "Welcome inside" : doorOpened ? "Explore the collection" : "Enter the boutique"}
             {doorOpened ? <ArrowDown className="size-4" /> : <ArrowRight className="size-4" />}
           </Button>
-          </div>
-          <div className="hero-caption absolute bottom-7 flex items-center gap-3 text-[9px] uppercase tracking-[0.3em] text-foreground/70 sm:bottom-9"><span className="h-px w-8 bg-primary" />A considered kind of movement<span className="h-px w-8 bg-primary" /></div>
+          <div className="absolute bottom-7 flex items-center gap-3 text-[9px] uppercase tracking-[0.3em] text-foreground/70 sm:bottom-9"><span className="h-px w-8 bg-primary" />A considered kind of movement<span className="h-px w-8 bg-primary" /></div>
         </div>
       </section>
 
