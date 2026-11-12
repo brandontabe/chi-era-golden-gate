@@ -513,7 +513,6 @@ select:focus-visible {
   align-items: center;
   justify-content: center;
   gap: clamp(16px, 2vw, 32px);
-  overflow-x: auto;
 }
 .store-menu-links a {
   flex-shrink: 0;
@@ -531,15 +530,17 @@ select:focus-visible {
       visibility 0s linear 220ms;
   }
   .store-menu-open {
-    max-height: 70px;
+    max-height: 180px;
     transition:
       opacity 220ms ease,
       max-height 220ms ease,
       visibility 0s;
   }
   .store-menu-links {
-    justify-content: flex-start;
-    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 24px;
+    row-gap: 0;
     padding: 4px 2px 12px;
   }
 }
