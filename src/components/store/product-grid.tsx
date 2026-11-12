@@ -1,3 +1,4 @@
+import { animateAddToCart } from "@/lib/cart-animation";
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { products } from "@/lib/catalog";
@@ -38,8 +39,9 @@ export function ProductGrid() {
             <button
               disabled={!ready}
               className="store-button w-full"
-              onClick={() => {
+              onClick={(event) => {
                 add(p.id);
+                animateAddToCart(event.currentTarget, p.image);
                 setAdded(p.name);
               }}
             >

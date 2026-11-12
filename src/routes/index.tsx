@@ -164,7 +164,7 @@ function HomePage() {
           <section
             id="collection"
             ref={collectionRef}
-            className="scroll-mt-8 px-5 py-20 sm:px-10 sm:py-28 lg:px-16"
+            className="scroll-mt-28 px-5 py-20 sm:px-10 sm:py-28 lg:px-16"
             aria-labelledby="collection-heading"
           >
             <div className="mx-auto max-w-7xl">

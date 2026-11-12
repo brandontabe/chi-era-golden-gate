@@ -51,7 +51,7 @@ export function SiteHeader({ onHome }: { onHome?: () => void }) {
     </>
   );
   return (
-    <header className="relative z-30 border-b border-border bg-background px-5 sm:px-10 lg:px-16">
+    <header className="sticky top-0 z-40 border-b border-border bg-background px-5 sm:px-10 lg:px-16">
       <div className="flex min-h-20 flex-wrap items-center justify-between gap-x-3">
         {onHome ? (
           <button
@@ -101,11 +101,15 @@ export function SiteHeader({ onHome }: { onHome?: () => void }) {
           </button>
           <Link
             to="/cart"
+            data-cart-icon
             aria-label={`Shopping cart, ${items.reduce((n, i) => n + i.quantity, 0)} items`}
             className="store-icon relative"
           >
             <ShoppingBag size={20} />
-            <span className="absolute -right-1 -top-1 flex min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[10px] text-primary-foreground">
+            <span
+              data-cart-count
+              className="absolute -right-1 -top-1 flex min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[10px] text-primary-foreground"
+            >
               {items.reduce((n, i) => n + i.quantity, 0)}
             </span>
           </Link>
