@@ -158,3 +158,67 @@
 @utility animate-rise { animation: rise .9s ease-out both; }
 @utility animate-logo-pulse { animation: logo-pulse 1.4s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; } }
+
+/* Raised brass pulls: backplate, screw heads, projecting mounts and keyhole. */
+.boutique-handle {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 112px;
+  border: 1px solid oklch(0.45 0.075 75);
+  border-radius: 14px 14px 10px 10px;
+  background: linear-gradient(90deg, oklch(0.49 0.085 75), oklch(0.8 0.095 85) 35%, oklch(0.67 0.1 80) 68%, oklch(0.46 0.08 75));
+  box-shadow: inset 1px 0 0 oklch(0.94 0.06 90 / 70%), 3px 3px 6px oklch(0 0 0 / 35%);
+}
+.boutique-handle-right { right: 18px; }
+.boutique-handle-left { left: 18px; }
+.boutique-handle::before, .boutique-handle::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, oklch(0.87 0.07 85) 40%, oklch(0.35 0.055 75) 42% 56%, oklch(0.7 0.09 80) 58%);
+  box-shadow: 0 1px 1px oklch(0 0 0 / 30%);
+}
+.boutique-handle::before { top: 6px; }
+.boutique-handle::after { bottom: 6px; }
+.boutique-handle-pull {
+  position: absolute;
+  top: 22px;
+  left: 8px;
+  width: 11px;
+  height: 61px;
+  border: 1px solid oklch(0.51 0.085 75);
+  border-radius: 5px;
+  background: linear-gradient(90deg, oklch(0.6 0.1 80), oklch(0.96 0.055 90) 32%, oklch(0.78 0.11 85) 55%, oklch(0.46 0.085 75));
+  box-shadow: 5px 3px 4px oklch(0 0 0 / 45%);
+}
+.boutique-handle-pull::before, .boutique-handle-pull::after {
+  content: "";
+  position: absolute;
+  left: -5px;
+  width: 18px;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(oklch(0.89 0.08 85), oklch(0.5 0.085 75));
+  box-shadow: 0 2px 2px oklch(0 0 0 / 30%);
+}
+.boutique-handle-pull::before { top: 2px; }
+.boutique-handle-pull::after { bottom: 2px; }
+.boutique-handle-keyhole {
+  position: absolute;
+  bottom: 18px;
+  left: 11px;
+  width: 5px;
+  height: 8px;
+  border-radius: 50% 50% 1px 1px;
+  background: oklch(0.24 0.025 75);
+  box-shadow: 0 1px 0 oklch(0.95 0.06 85 / 65%);
+}
+@media (min-width: 640px) {
+  .boutique-handle-right { right: 32px; }
+  .boutique-handle-left { left: 32px; }
+}

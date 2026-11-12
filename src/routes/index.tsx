@@ -120,12 +120,16 @@ function HomePage() {
         <div className="absolute inset-0 -z-10 bg-background/45" />
         <div className="absolute inset-0 z-0 flex" aria-hidden="true">
           <div className={`door-panel relative h-full w-1/2 origin-left border-r border-primary/35 ${doorsOpening ? "animate-door-left" : doorOpened ? "hidden" : ""}`}>
-            <span className="absolute right-5 top-1/2 h-20 w-px -translate-y-1/2 bg-gradient-to-b from-transparent via-primary to-transparent sm:right-10" />
-            <span className="absolute right-2 top-1/2 size-2 -translate-y-1/2 rounded-full bg-primary sm:right-7" />
+            <span className="boutique-handle boutique-handle-right">
+              <span className="boutique-handle-pull" />
+              <span className="boutique-handle-keyhole" />
+            </span>
           </div>
           <div className={`door-panel relative h-full w-1/2 origin-right border-l border-primary/35 ${doorsOpening ? "animate-door-right" : doorOpened ? "hidden" : ""}`}>
-            <span className="absolute left-5 top-1/2 h-20 w-px -translate-y-1/2 bg-gradient-to-b from-transparent via-primary to-transparent sm:left-10" />
-            <span className="absolute left-2 top-1/2 size-2 -translate-y-1/2 rounded-full bg-primary sm:left-7" />
+            <span className="boutique-handle boutique-handle-left">
+              <span className="boutique-handle-pull" />
+              <span className="boutique-handle-keyhole" />
+            </span>
           </div>
         </div>
         <div className="relative z-10 flex min-h-[680px] flex-col items-center justify-center px-6 py-24 text-center sm:min-h-[760px] lg:min-h-[min(820px,calc(100svh-80px))]">
