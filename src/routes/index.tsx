@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowDown, ArrowRight, ArrowUpRight, Instagram } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, Instagram, Moon, Sun } from "lucide-react";
 import boutiqueInterior from "@/assets/chi-era-boutique-interior.jpg";
 import brandLogo from "@/assets/instagram/chi-era-profile-logo.jpg";
 import lookOne from "@/assets/instagram/look-01.jpg";
@@ -37,6 +37,31 @@ const collection = [
 ];
 
 function HomePage() {
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("chi-era-theme");
+      if (saved === "dark" || saved === "light") {
+        setTheme(saved);
+        document.documentElement.classList.toggle("dark", saved === "dark");
+      }
+    } catch {
+      // Theme switching still works when browser storage is unavailable.
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const next = theme === "light" ? "dark" : "light";
+    setTheme(next);
+    document.documentElement.classList.toggle("dark", next === "dark");
+    try {
+      localStorage.setItem("chi-era-theme", next);
+    } catch {
+      // Storage is optional for the current visit.
+    }
+  };
+
   const [doorsOpening, setDoorsOpening] = useState(false);
   const [doorOpened, setDoorOpened] = useState(false);
   const [loadingHome, setLoadingHome] = useState(false);
@@ -47,8 +72,7 @@ function HomePage() {
     const timeout = window.setTimeout(() => {
       setDoorsOpening(false);
       setDoorOpened(true);
-      collectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 1450);
+    }, 1800);
     return () => window.clearTimeout(timeout);
   }, [doorsOpening]);
 
@@ -84,6 +108,9 @@ function HomePage() {
         <nav aria-label="Main navigation" className="flex items-center gap-5 sm:gap-9">
           <a href="#collection" className="text-xs uppercase tracking-[0.16em] text-muted-foreground transition-colors hover:text-primary">The collection</a>
           <a href="#story" className="hidden text-xs uppercase tracking-[0.16em] text-muted-foreground transition-colors hover:text-primary sm:inline">Our world</a>
+          <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`} className="shrink-0 text-foreground hover:text-primary">
+            {theme === "light" ? <Moon className="size-5" strokeWidth={1.5} /> : <Sun className="size-5" strokeWidth={1.5} />}
+          </Button>
           <a href={instagram} target="_blank" rel="noreferrer" aria-label="Chi-Era on Instagram" className="text-foreground transition-colors hover:text-primary"><Instagram className="size-5" strokeWidth={1.5} /></a>
         </nav>
       </header>
