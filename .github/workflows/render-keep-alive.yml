@@ -1,0 +1,30 @@
+name: Render keep-alive
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: render-keep-alive
+  cancel-in-progress: false
+
+jobs:
+  ping-homepage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Request the Render homepage
+        shell: bash
+        run: |
+          curl --fail --silent --show-error --location \
+            --connect-timeout 20 \
+            --max-time 90 \
+            --retry 1 \
+            --retry-delay 10 \
+            --retry-max-time 190 \
+            --output /dev/null \
+            --write-out 'Homepage returned HTTP %{http_code}\n' \
+            https://chi-era-active.onrender.com/
