@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
 import { Menu, X, Moon, Sun, ShoppingBag, Instagram, ArrowUpRight } from "lucide-react";
 import logo from "@/assets/instagram/chi-era-profile-logo.jpg";
@@ -12,8 +12,9 @@ const links = [
   { to: "/contact", name: "Contact us" },
 ] as const;
 export function SiteHeader({ onHome }: { onHome?: () => void }) {
+  const menuButton = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
   const { items } = useCart();
   const pathname = useLocation({ select: (l) => l.pathname });
   useEffect(() => {
@@ -25,7 +26,10 @@ export function SiteHeader({ onHome }: { onHome?: () => void }) {
   useEffect(() => {
     if (!open) return;
     const close = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        setOpen(false);
+        menuButton.current?.focus();
+      }
     };
     document.addEventListener("keydown", close);
     return () => document.removeEventListener("keydown", close);
@@ -66,18 +70,6 @@ export function SiteHeader({ onHome }: { onHome?: () => void }) {
             {brand}
           </Link>
         )}
-        <nav aria-label="Main navigation" className="hidden items-center gap-6 lg:flex">
-          {links.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              className="store-nav"
-              activeProps={{ "aria-current": "page", className: "text-primary" }}
-            >
-              {l.name}
-            </Link>
-          ))}
-        </nav>
         <div className="flex items-center gap-2 sm:gap-4">
           <button
             onClick={toggle}
@@ -97,9 +89,10 @@ export function SiteHeader({ onHome }: { onHome?: () => void }) {
             </span>
           </Link>
           <button
-            className="store-icon lg:hidden"
+            ref={menuButton}
+            className="store-icon"
             aria-expanded={open}
-            aria-controls="mobile-menu"
+            aria-controls="main-menu"
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen(!open)}
           >
@@ -107,12 +100,14 @@ export function SiteHeader({ onHome }: { onHome?: () => void }) {
           </button>
         </div>
       </div>
-      {open && (
-        <nav
-          id="mobile-menu"
-          aria-label="Mobile navigation"
-          className="flex flex-col border-t border-border py-3 lg:hidden"
-        >
+      <nav
+        id="main-menu"
+        aria-label="Main navigation"
+        aria-hidden={!open}
+        inert={!open}
+        className={`store-menu ${open ? "store-menu-open" : ""}`}
+      >
+        <div className="flex flex-col gap-1 px-5 py-4 sm:px-10 lg:px-16">
           {links.map((l) => (
             <Link
               key={l.to}
@@ -124,8 +119,8 @@ export function SiteHeader({ onHome }: { onHome?: () => void }) {
               {l.name}
             </Link>
           ))}
-        </nav>
-      )}
+        </div>
+      </nav>
     </header>
   );
 }
