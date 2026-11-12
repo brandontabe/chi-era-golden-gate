@@ -493,30 +493,55 @@ select:focus-visible {
 }
 
 .store-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  overflow: hidden;
-  max-height: 0;
+  flex: 1;
+  min-width: 0;
   opacity: 0;
   visibility: hidden;
-  background: var(--background);
-  border-bottom: 1px solid var(--border);
-  box-shadow: 0 18px 28px oklch(0 0 0 / 12%);
   transition:
     opacity 220ms ease,
-    max-height 260ms ease,
-    visibility 0s linear 260ms;
+    visibility 0s linear 220ms;
 }
 .store-menu-open {
-  max-height: 360px;
   opacity: 1;
   visibility: visible;
   transition:
     opacity 220ms ease,
-    max-height 260ms ease,
     visibility 0s;
+}
+.store-menu-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 2vw, 32px);
+  overflow-x: auto;
+}
+.store-menu-links a {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+@media (max-width: 1023px) {
+  .store-menu {
+    order: 3;
+    flex-basis: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition:
+      opacity 220ms ease,
+      max-height 220ms ease,
+      visibility 0s linear 220ms;
+  }
+  .store-menu-open {
+    max-height: 70px;
+    transition:
+      opacity 220ms ease,
+      max-height 220ms ease,
+      visibility 0s;
+  }
+  .store-menu-links {
+    justify-content: flex-start;
+    gap: 24px;
+    padding: 4px 2px 12px;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .store-menu {

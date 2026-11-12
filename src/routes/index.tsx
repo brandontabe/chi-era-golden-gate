@@ -159,65 +159,72 @@ function HomePage() {
         </div>
       </section>
 
-      <section
-        id="collection"
-        ref={collectionRef}
-        className="scroll-mt-8 px-5 py-20 sm:px-10 sm:py-28 lg:px-16"
-        aria-labelledby="collection-heading"
-      >
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-10 flex flex-wrap items-end justify-between gap-5 sm:mb-14">
-            <div>
-              <p className="mb-3 text-[10px] uppercase tracking-[0.32em] text-primary">
-                The Chi-Era edit
-              </p>
-              <h2 id="collection-heading" className="font-display text-5xl font-normal sm:text-6xl">
-                Move with <span className="italic text-gold">intention.</span>
-              </h2>
+      {doorOpened && (
+        <>
+          <section
+            id="collection"
+            ref={collectionRef}
+            className="scroll-mt-8 px-5 py-20 sm:px-10 sm:py-28 lg:px-16"
+            aria-labelledby="collection-heading"
+          >
+            <div className="mx-auto max-w-7xl">
+              <div className="mb-10 flex flex-wrap items-end justify-between gap-5 sm:mb-14">
+                <div>
+                  <p className="mb-3 text-[10px] uppercase tracking-[0.32em] text-primary">
+                    The Chi-Era edit
+                  </p>
+                  <h2
+                    id="collection-heading"
+                    className="font-display text-5xl font-normal sm:text-6xl"
+                  >
+                    Move with <span className="italic text-gold">intention.</span>
+                  </h2>
+                </div>
+                <a
+                  href={instagram}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group inline-flex items-center gap-2 pb-1 text-xs uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-primary"
+                >
+                  Follow the collection{" "}
+                  <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
+              </div>
+              <ProductGrid />
             </div>
-            <a
-              href={instagram}
-              target="_blank"
-              rel="noreferrer"
-              className="group inline-flex items-center gap-2 pb-1 text-xs uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-primary"
+          </section>
+
+          <section
+            id="story"
+            className="border-y border-primary/20 bg-card/50 px-5 py-20 text-center sm:py-28"
+            aria-labelledby="story-heading"
+          >
+            <p className="mb-5 text-[10px] uppercase tracking-[0.35em] text-primary">
+              Chi-Era Activewear
+            </p>
+            <h2
+              id="story-heading"
+              className="mx-auto max-w-3xl font-display text-5xl font-normal leading-tight sm:text-7xl"
             >
-              Follow the collection{" "}
-              <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </a>
-          </div>
-          <ProductGrid />
-        </div>
-      </section>
+              Where power meets <span className="italic text-gold">elegance.</span>
+            </h2>
+            <p className="mx-auto mt-6 max-w-lg text-sm font-light leading-7 text-muted-foreground">
+              A thoughtful wardrobe for the way you move — from the studio and beyond.
+            </p>
+            <Button
+              asChild
+              variant="outline"
+              className="mt-8 h-11 gap-3 border-primary/60 bg-transparent px-6 text-xs uppercase tracking-[0.18em] text-foreground hover:bg-primary hover:text-primary-foreground"
+            >
+              <a href={instagram} target="_blank" rel="noreferrer">
+                Discover Chi-Era on Instagram <ArrowUpRight className="size-4" />
+              </a>
+            </Button>
+          </section>
 
-      <section
-        id="story"
-        className="border-y border-primary/20 bg-card/50 px-5 py-20 text-center sm:py-28"
-        aria-labelledby="story-heading"
-      >
-        <p className="mb-5 text-[10px] uppercase tracking-[0.35em] text-primary">
-          Chi-Era Activewear
-        </p>
-        <h2
-          id="story-heading"
-          className="mx-auto max-w-3xl font-display text-5xl font-normal leading-tight sm:text-7xl"
-        >
-          Where power meets <span className="italic text-gold">elegance.</span>
-        </h2>
-        <p className="mx-auto mt-6 max-w-lg text-sm font-light leading-7 text-muted-foreground">
-          A thoughtful wardrobe for the way you move — from the studio and beyond.
-        </p>
-        <Button
-          asChild
-          variant="outline"
-          className="mt-8 h-11 gap-3 border-primary/60 bg-transparent px-6 text-xs uppercase tracking-[0.18em] text-foreground hover:bg-primary hover:text-primary-foreground"
-        >
-          <a href={instagram} target="_blank" rel="noreferrer">
-            Discover Chi-Era on Instagram <ArrowUpRight className="size-4" />
-          </a>
-        </Button>
-      </section>
-
-      <SiteFooter />
+          <SiteFooter />
+        </>
+      )}
     </main>
   );
 }

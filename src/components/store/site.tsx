@@ -52,7 +52,7 @@ export function SiteHeader({ onHome }: { onHome?: () => void }) {
   );
   return (
     <header className="relative z-30 border-b border-border bg-background px-5 sm:px-10 lg:px-16">
-      <div className="flex min-h-20 items-center justify-between gap-3">
+      <div className="flex min-h-20 flex-wrap items-center justify-between gap-x-3">
         {onHome ? (
           <button
             onClick={onHome}
@@ -70,7 +70,28 @@ export function SiteHeader({ onHome }: { onHome?: () => void }) {
             {brand}
           </Link>
         )}
-        <div className="flex items-center gap-2 sm:gap-4">
+        <nav
+          id="main-menu"
+          aria-label="Main navigation"
+          aria-hidden={!open}
+          inert={!open}
+          className={`store-menu ${open ? "store-menu-open" : ""}`}
+        >
+          <div className="store-menu-links">
+            {links.map((l) => (
+              <Link
+                key={l.to}
+                to={l.to}
+                onClick={() => setOpen(false)}
+                className="store-nav py-3"
+                activeProps={{ "aria-current": "page" }}
+              >
+                {l.name}
+              </Link>
+            ))}
+          </div>
+        </nav>
+        <div className="flex shrink-0 items-center gap-2 sm:gap-4">
           <button
             onClick={toggle}
             aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
@@ -100,27 +121,6 @@ export function SiteHeader({ onHome }: { onHome?: () => void }) {
           </button>
         </div>
       </div>
-      <nav
-        id="main-menu"
-        aria-label="Main navigation"
-        aria-hidden={!open}
-        inert={!open}
-        className={`store-menu ${open ? "store-menu-open" : ""}`}
-      >
-        <div className="flex flex-col gap-1 px-5 py-4 sm:px-10 lg:px-16">
-          {links.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              onClick={() => setOpen(false)}
-              className="store-nav py-3"
-              activeProps={{ "aria-current": "page" }}
-            >
-              {l.name}
-            </Link>
-          ))}
-        </div>
-      </nav>
     </header>
   );
 }
