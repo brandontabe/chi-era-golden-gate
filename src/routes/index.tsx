@@ -130,11 +130,11 @@ function HomePage() {
         </div>
         <div className="relative z-10 flex min-h-[680px] flex-col items-center justify-center px-6 py-24 text-center sm:min-h-[760px] lg:min-h-[min(820px,calc(100svh-80px))]">
           {doorOpened && <p className="mb-6 animate-rise text-[10px] uppercase tracking-[0.38em] text-primary sm:text-xs">Where power meets elegance</p>}
-          <h1 className={`animate-rise font-display font-normal leading-[0.92] text-foreground ${doorOpened ? "text-6xl sm:text-8xl lg:text-9xl" : "text-5xl sm:text-6xl"}`} style={{ animationDelay: "100ms" }}>
+          <h1 className={`animate-rise font-display font-normal leading-[0.92] text-foreground ${doorOpened ? "text-6xl sm:text-8xl lg:text-9xl" : "absolute inset-x-6 bottom-[calc(50%+72px)] text-5xl sm:text-6xl"}`} style={{ animationDelay: "100ms" }}>
             Chi-Era<span className="block italic text-gold">Activewear</span>
           </h1>
           {doorOpened && <p className="mt-7 max-w-md animate-rise text-sm font-light leading-7 text-foreground/90 sm:text-base" style={{ animationDelay: "200ms" }}>Strength in every silhouette. Elegance in every move.</p>}
-          <Button onClick={enterBoutique} disabled={doorsOpening} variant="outline" className="mt-10 h-12 gap-4 border-primary/80 bg-background/85 px-7 text-xs uppercase tracking-[0.2em] text-foreground transition-all hover:bg-primary hover:text-primary-foreground">
+          <Button onClick={enterBoutique} disabled={doorsOpening} variant="outline" className={`${doorOpened ? "mt-10" : "absolute left-1/2 top-[calc(50%+72px)] -translate-x-1/2"} h-12 gap-4 border-primary/80 bg-background/85 px-7 text-xs uppercase tracking-[0.2em] text-foreground transition-colors hover:bg-primary hover:text-primary-foreground`}>
             {doorsOpening ? "Welcome inside" : doorOpened ? "Explore the collection" : "Enter the boutique"}
             {doorOpened ? <ArrowDown className="size-4" /> : <ArrowRight className="size-4" />}
           </Button>
