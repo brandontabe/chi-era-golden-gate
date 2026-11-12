@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowDown, ArrowRight, ArrowUpRight, Instagram } from "lucide-react";
 import boutiqueInterior from "@/assets/chi-era-boutique-interior.jpg";
+import cloudInterior from "@/assets/chi-era-cloud-interior.jpg";
 import brandLogo from "@/assets/instagram/chi-era-profile-logo.jpg";
 import lookOne from "@/assets/instagram/look-01.jpg";
 import lookTwo from "@/assets/instagram/look-02.jpg";
@@ -48,7 +49,7 @@ function HomePage() {
       setDoorsOpening(false);
       setDoorOpened(true);
       collectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 1450);
+    }, 1800);
     return () => window.clearTimeout(timeout);
   }, [doorsOpening]);
 
@@ -89,29 +90,23 @@ function HomePage() {
       </header>
 
       <section aria-label="Welcome to Chi-Era Activewear" className="relative isolate min-h-[680px] overflow-hidden sm:min-h-[760px] lg:min-h-[min(820px,calc(100svh-80px))]">
-        <img src={boutiqueInterior} alt="A sunlit Chi-Era-inspired activewear boutique" width={1920} height={1280} fetchPriority="high" className="absolute inset-0 -z-20 size-full object-cover object-center" />
-        <div className="absolute inset-0 -z-10 bg-background/45" />
+        <img src={doorOpened || doorsOpening ? cloudInterior : boutiqueInterior} alt="A luminous Chi-Era boutique above the clouds" width={1920} height={1280} fetchPriority="high" className="absolute inset-0 -z-20 size-full object-cover object-center" />
+        <div className="absolute inset-0 -z-10 bg-background/10" />
         <div className="absolute inset-0 z-0 flex" aria-hidden="true">
-          <div className={`door-panel relative h-full w-1/2 origin-left border-r border-primary/35 ${doorsOpening ? "animate-door-left" : doorOpened ? "hidden" : ""}`}>
-            <span className="absolute right-5 top-1/2 h-20 w-px -translate-y-1/2 bg-gradient-to-b from-transparent via-primary to-transparent sm:right-10" />
-            <span className="absolute right-2 top-1/2 size-2 -translate-y-1/2 rounded-full bg-primary sm:right-7" />
-          </div>
-          <div className={`door-panel relative h-full w-1/2 origin-right border-l border-primary/35 ${doorsOpening ? "animate-door-right" : doorOpened ? "hidden" : ""}`}>
-            <span className="absolute left-5 top-1/2 h-20 w-px -translate-y-1/2 bg-gradient-to-b from-transparent via-primary to-transparent sm:left-10" />
-            <span className="absolute left-2 top-1/2 size-2 -translate-y-1/2 rounded-full bg-primary sm:left-7" />
-          </div>
+          <div className={`heaven-door-panel heaven-door-left relative h-full w-1/2 origin-left border-r border-primary/50 ${doorsOpening ? "animate-door-left" : doorOpened ? "hidden" : ""}`} />
+          <div className={`heaven-door-panel heaven-door-right relative h-full w-1/2 origin-right border-l border-primary/50 ${doorsOpening ? "animate-door-right" : doorOpened ? "hidden" : ""}`} />
         </div>
         <div className="relative z-10 flex min-h-[680px] flex-col items-center justify-center px-6 py-24 text-center sm:min-h-[760px] lg:min-h-[min(820px,calc(100svh-80px))]">
-          <p className="mb-6 animate-rise text-[10px] uppercase tracking-[0.38em] text-primary sm:text-xs">Where power meets elegance</p>
-          <h1 className="animate-rise font-display text-6xl font-normal leading-[0.92] text-foreground sm:text-8xl lg:text-9xl" style={{ animationDelay: "100ms" }}>
+          <p className="mb-6 animate-rise text-[10px] uppercase tracking-[0.38em] text-door-ink sm:text-xs">Where power meets elegance</p>
+          <h1 className="animate-rise font-display text-6xl font-normal leading-[0.92] text-door-ink sm:text-8xl lg:text-9xl" style={{ animationDelay: "100ms" }}>
             Chi-Era<span className="block italic text-gold">Activewear</span>
           </h1>
-          <p className="mt-7 max-w-md animate-rise text-sm font-light leading-7 text-foreground/90 sm:text-base" style={{ animationDelay: "200ms" }}>Strength in every silhouette. Elegance in every move.</p>
-          <Button onClick={enterBoutique} disabled={doorsOpening} variant="outline" className="mt-10 h-12 gap-4 border-primary/80 bg-background/85 px-7 text-xs uppercase tracking-[0.2em] text-foreground transition-all hover:bg-primary hover:text-primary-foreground">
+          <p className="mt-7 max-w-md animate-rise text-sm font-light leading-7 text-door-ink sm:text-base" style={{ animationDelay: "200ms" }}>Strength in every silhouette. Elegance in every move.</p>
+          <Button onClick={enterBoutique} disabled={doorsOpening} variant="outline" className="mt-10 h-12 gap-4 border-primary/80 bg-hero-panel px-7 text-xs uppercase tracking-[0.2em] text-door-ink transition-all hover:bg-primary hover:text-primary-foreground">
             {doorsOpening ? "Welcome inside" : doorOpened ? "Explore the collection" : "Enter the boutique"}
             {doorOpened ? <ArrowDown className="size-4" /> : <ArrowRight className="size-4" />}
           </Button>
-          <div className="absolute bottom-7 flex items-center gap-3 text-[9px] uppercase tracking-[0.3em] text-foreground/70 sm:bottom-9"><span className="h-px w-8 bg-primary" />A considered kind of movement<span className="h-px w-8 bg-primary" /></div>
+          <div className="absolute bottom-7 flex items-center gap-3 text-[9px] uppercase tracking-[0.3em] text-door-ink sm:bottom-9"><span className="h-px w-8 bg-primary" />A considered kind of movement<span className="h-px w-8 bg-primary" /></div>
         </div>
       </section>
 

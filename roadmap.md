@@ -1,0 +1,3 @@
+- [ ] Build Chi-Era Activewear storefront with the selected identity, profile imagery, animated doors, and logo loader.
+- [ ] Replace the dark hero door treatment with bright, fashion-forward heavenly gates and clouds.
+- [ ] Verify the hero-to-collection flow, home-logo loader, responsive layout, and current preview build.
