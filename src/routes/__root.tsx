@@ -10,6 +10,7 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
+import { WhatsAppWidget } from "@/components/store/whatsapp-widget";
 import { CartProvider } from "@/components/store/cart-context";
 
 import appCss from "../styles.css?url";
@@ -138,6 +139,7 @@ function RootComponent() {
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <CartProvider>
         <Outlet />
+        <WhatsAppWidget />
       </CartProvider>
     </QueryClientProvider>
   );
