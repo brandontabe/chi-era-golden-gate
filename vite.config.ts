@@ -9,10 +9,17 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+// Outside the Lovable sandbox (e.g. Netlify CI) build for the host's own target.
+// Inside the sandbox this is ignored and the Cloudflare target is always used.
+const externalPreset = process.env["NETLIFY"] ? "netlify" : process.env["NITRO_PRESET"];
+
+
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+    ...(externalPreset ? { nitro: { preset: externalPreset } } : {}),
+
 });
